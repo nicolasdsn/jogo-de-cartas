@@ -1,8 +1,14 @@
 import React from "react";
+import { StatusBar } from "react-native";
 import Routes from "./src/Routes";
 
 const App = () => {
-  return <Routes />;
+  return (
+    <>
+      <StatusBar />
+      <Routes />
+    </>
+  );
 };
 
 export default App;

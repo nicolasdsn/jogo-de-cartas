@@ -3,12 +3,16 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     padding: 16,
+    backgroundColor: "black",
   },
   title: {
-    fontSize: 36,
+    flex: 1,
+    fontSize: 42,
     textAlign: "center",
+    textAlignVertical: "center",
     fontWeight: "bold",
+    color: "white",
+    marginBottom: "15%",
   },
 });
