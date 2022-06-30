@@ -9,6 +9,7 @@ import { styles } from "./styles";
 const Game = ({ route }) => {
   const { deckId } = route.params;
   const [cards, setCards] = useState(null);
+  const [naipe, setNaipe] = useState([])
 
 
   const tentarNovamente = () => {
@@ -17,9 +18,23 @@ const Game = ({ route }) => {
       setCards(deck);
     };
     get();
+    
+    //DAQUI ATÉ A LINHA 37 É TENTATIVA
+
+    {cards && cards.cards.map((card) => (
+      setNaipe({...card.suit})
+    ))}
+    alert(naipe)
+    console.log("aqui",naipe);
+    if((cards[0].suit=="CLUBS" || cards[0].suit=="SPADES")&&(cards[1].suit=="CLUBS" || cards[1].suit=="SPADES")&&(cards[2].suit=="CLUBS" || cards[2].suit=="SPADES")){
+      return alert("Você ganhou!")
+    }
+    else{
+     return alert("Não foi dessa vez, tente novamente")
+    }
   }
 
-
+//TENTATIVA ATÉ AQUI
 
   useEffect(() => {
     // if (cards.length === 0) return;
@@ -27,25 +42,23 @@ const Game = ({ route }) => {
   }, [cards]);
 
   return (
-    <ScrollView style={{flex:6}} >{cards && cards.cards.map((card) => (
-      <Image source={{ uri: card.image}}style={{width:135, height:200, resizeMode:"contain"}}></Image>
+    <ScrollView style={{ flex: 6 }} >{cards && cards.cards.map((card) => (
+      <Image source={{ uri: card.image }} style={{ width: 135, height: 200, resizeMode: "contain" }}></Image>
     ))}
 
-    {cards && cards.cards.map((card) => (
-     <Text>{card.suit}</Text>
-  ))}
+      {cards && cards.cards.map((card) => (
+        <Text>{card.suit}</Text>
+      ))}
 
-     
-  
-   <Text>
+      <Text>
         Regras do jogo: Se as 3 cartas renderizadas forem da cor preta, você ganha!
       </Text>
-   <TouchableOpacity style={styles.tentarNovamente} onPress={tentarNovamente}>
-      <Text>
-        Tentar novamente
-      </Text>
-   </TouchableOpacity>
-   
+      <TouchableOpacity style={styles.tentarNovamente} onPress={tentarNovamente}>
+        <Text>
+          Tentar novamente
+        </Text>
+      </TouchableOpacity>
+
     </ScrollView>
 
   );
