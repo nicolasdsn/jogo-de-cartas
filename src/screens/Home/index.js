@@ -4,11 +4,16 @@ import { getDeckId } from "../../services/axiosClient";
 import { styles } from "./styles";
 import bgImg from "../../images/AAAA.webp";
 import { TextInput } from "react-native";
+import { useContext } from "react";
+import { NickContext } from "../../NickContext";
 
 const Home = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [idDeck, setIdDeck] = useState(null);
   const [nickName, setNickName] = useState("player1")
+  const [dados, setDados] = useContext(NickContext)
+
+  setDados(nickName)
 
   useEffect(() => {
     const get = async () => {

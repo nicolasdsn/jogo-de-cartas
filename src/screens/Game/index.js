@@ -5,11 +5,16 @@ import { Button } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { getCards } from "../../services/axiosClient";
 import { styles } from "./styles";
+import { NickContext } from "../../NickContext";
 
 const Game = ({ route }) => {
   const { deckId } = route.params;
   const [cards, setCards] = useState(null);
   const [naipe, setNaipe] = useState([])
+  
+  const [dados, setDados] = useContext(NickContext)
+
+  console.log(dados);
 
 
   const tentarNovamente = () => {
