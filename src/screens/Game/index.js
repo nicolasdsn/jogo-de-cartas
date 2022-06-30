@@ -21,18 +21,18 @@ const Game = ({ route }) => {
     
     //DAQUI ATÉ A LINHA 37 É TENTATIVA
 
-    {cards && cards.cards.map((card) => (
-      setNaipe({...card.suit})
-    ))}
-    alert(naipe)
-    console.log("aqui",naipe);
-    if((cards[0].suit=="CLUBS" || cards[0].suit=="SPADES")&&(cards[1].suit=="CLUBS" || cards[1].suit=="SPADES")&&(cards[2].suit=="CLUBS" || cards[2].suit=="SPADES")){
-      return alert("Você ganhou!")
-    }
-    else{
-     return alert("Não foi dessa vez, tente novamente")
-    }
-  }
+  //   {cards && cards.cards.map((card) => (
+  //     setNaipe({...cards, ...card.suit})
+  //   ))}
+  //   alert(naipe)
+  //   console.log("aqui",naipe);
+  //   if((cards[0].suit=="CLUBS" || cards[0].suit=="SPADES")&&(cards[1].suit=="CLUBS" || cards[1].suit=="SPADES")&&(cards[2].suit=="CLUBS" || cards[2].suit=="SPADES")){
+  //     return alert("Você ganhou!")
+  //   }
+  //   else{
+  //    return alert("Não foi dessa vez, tente novamente")
+  //   }
+  // }
 
 //TENTATIVA ATÉ AQUI
 
