@@ -3,10 +3,12 @@ import { View, Text, Button, ImageBackground } from "react-native";
 import { getDeckId } from "../../services/axiosClient";
 import { styles } from "./styles";
 import bgImg from "../../images/AAAA.webp";
+import { TextInput } from "react-native";
 
 const Home = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [idDeck, setIdDeck] = useState(null);
+  const [nickName, setNickName] = useState("player1")
 
   useEffect(() => {
     const get = async () => {
@@ -32,7 +34,8 @@ const Home = ({ navigation }) => {
     >
       <Text style={styles.title}>Jogo de Cartas</Text>
       <View style={{ flex: 2, justifyContent: "center", paddingTop: "25%" }}>
-        <Button title="Iniciar Partida" onPress={inciarPartida} />
+        <Button title="Iniciar Partida" onPress={inciarPartida} headerShown/>
+        <TextInput style={styles.input} placeholder="Insira seu nickname" onChange={(e)=>setNickName(e.target.value)}></TextInput>
       </View>
     </ImageBackground>
   );

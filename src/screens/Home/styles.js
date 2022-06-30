@@ -15,4 +15,10 @@ export const styles = StyleSheet.create({
     color: "white",
     marginBottom: "15%",
   },
+  input: {
+    borderRadius: 1,
+    backgroundColor: "white",
+    marginTop: 10
+  },
+
 });
