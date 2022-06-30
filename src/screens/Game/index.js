@@ -32,7 +32,7 @@ const Game = ({ route }) => {
   //   else{
   //    return alert("Não foi dessa vez, tente novamente")
   //   }
-  // }
+   }
 
 //TENTATIVA ATÉ AQUI
 
