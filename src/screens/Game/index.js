@@ -10,12 +10,10 @@ import { NickContext } from "../../NickContext";
 const Game = ({ route }) => {
   const { deckId } = route.params;
   const [cards, setCards] = useState(null);
-  // const [naipe, setNaipe] = useState([])
-  
+  const [naipe, setNaipe] = useState(0)
   const {dados, setDados} = useContext(NickContext)
 
-  console.log(dados);
-
+ 
 
   const tentarNovamente = () => {
     const get = async () => {
@@ -23,6 +21,12 @@ const Game = ({ route }) => {
       setCards(deck);
     };
     get();
+    alert(dados);
+    {cards && cards.cards.every((card) => (
+      (card.suit=="CLUBS" || card.suit=="SPADES")
+    ))}
+    
+    
     
     //DAQUI ATÉ A LINHA 37 É TENTATIVA
 
@@ -54,9 +58,12 @@ const Game = ({ route }) => {
     ))}
 
       {cards && cards.cards.map((card) => (
+        
         <Text>{card.suit}</Text>
-      ))}
 
+     ))}
+
+      
       <Text>
         Regras do jogo: Se as 3 cartas renderizadas forem da cor preta, você ganha!
       </Text>
