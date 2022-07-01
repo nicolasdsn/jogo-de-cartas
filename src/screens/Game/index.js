@@ -4,28 +4,27 @@ import { TouchableOpacity } from "react-native";
 import { getCards } from "../../services/axiosClient";
 import { styles } from "./styles";
 import { NickContext } from "../../NickContext";
-import bgImg from "../../images/fundoVerde.jpg";
+import bgImg from "../../images/fundoVermelho.jpg";
 
-const Game = ({ route , navigation}) => {
+const Game = ({ route }) => {
   const { deckId } = route.params;
   const [cards, setCards] = useState(null);
   const [naipe, setNaipe] = useState(0);
   const { dados, setDados } = useContext(NickContext);
-  const [restante, setRestante] = useState(52)
+  const [restante, setRestante] =useState(52);
 
   const verificar = () => {
     const ganhou =
       cards &&
       cards.cards.every(
-        (card) => card.suit == "CLUBS" || card.suit == "SPADES"
+        (card) => card.suit == "DIAMONDS" || card.suit == "HEARTS"
       );
-      
+
     if (cards==null ) {
       return;
     }
     else if(restante<=2){
       alert("As cartas acabaram")
-      navigation.navigate("Home");
     } 
     else if (ganhou) {
       alert(`🏆Parabéns ${dados}, você venceu🏆`);
@@ -34,36 +33,14 @@ const Game = ({ route , navigation}) => {
     }
   };
 
-  const comprarCartas = () => {
+  const tentarNovamente = () => {
     const get = async () => {
       const deck = await getCards(deckId, 3);
       setCards(deck);
-      setRestante(restante-3);
-      
+      setRestante(restante-3)
     };
     get();
-
-    //
-
-    //
-
-    //DAQUI ATÉ A LINHA 37 É TENTATIVA
-
-    //   {cards && cards.cards.map((card) => (
-    //     setNaipe({...cards, ...card.suit})
-    //   ))}
-    //   alert(naipe)
-    //   console.log("aqui",naipe);
-
-    //   if((cards[0].suit=="CLUBS" || cards[0].suit=="SPADES")&&(cards[1].suit=="CLUBS" || cards[1].suit=="SPADES")&&(cards[2].suit=="CLUBS" || cards[2].suit=="SPADES")){
-    //     return alert("Você ganhou!")
-    //   }
-    //   else{
-    //    return alert("Não foi dessa vez, tente novamente")
-    //   }
   };
-
-  //TENTATIVA ATÉ AQUI
 
   useEffect(() => {
     setTimeout(() => {
@@ -89,15 +66,14 @@ const Game = ({ route , navigation}) => {
 
       <View>
         <Text style={{fontSize:30, color:"white" , fontWeight:"bold"}}>
-          Regras do jogo: Se as 3 cartas compradas forem da cor preta, você
-          ganha!
+          Regras do jogo: Compre 3 cartas vermelhas para ganhar!
         </Text>
       </View>
 
       <View style={{flex:1,  justifyContent:"center", alignItems:"center"}}>
         <TouchableOpacity
-          style={styles.comprarCartas}
-          onPress={comprarCartas}
+          style={styles.tentarNovamente}
+          onPress={tentarNovamente}
         >
           <Text>Comprar cartas</Text>
         </TouchableOpacity>

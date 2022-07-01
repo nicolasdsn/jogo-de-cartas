@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, Button, ImageBackground } from "react-native";
 import { getDeckId } from "../../services/axiosClient";
 import { styles } from "./styles";
-import bgImg from "../../images/BBBB.jpg";
+import bgImg from "../../images/AAAA.webp";
 import { TextInput } from "react-native";
 import { useContext } from "react";
 import { NickContext } from "../../NickContext";
