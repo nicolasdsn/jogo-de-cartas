@@ -11,7 +11,8 @@ const Home = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [idDeck, setIdDeck] = useState(null);
   const [nickName, setNickName] = useState("player1")
-  const [dados, setDados] = useContext(NickContext)
+
+  const {dados, setDados} = useContext(NickContext)
 
   setDados(nickName)
 
