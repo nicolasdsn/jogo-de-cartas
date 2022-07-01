@@ -14,8 +14,6 @@ const Home = ({ navigation }) => {
 
   const {dados, setDados} = useContext(NickContext)
 
-  setDados(nickName)
-
   useEffect(() => {
     const get = async () => {
       setLoading(true);
@@ -24,12 +22,14 @@ const Home = ({ navigation }) => {
       setLoading(false);
     };
     get();
+    
   }, []);
 
   const inciarPartida = async () => {
     navigation.navigate("Game", {
       deckId: idDeck,
     });
+    setDados(nickName)
   };
 
   return (
@@ -41,7 +41,7 @@ const Home = ({ navigation }) => {
       <Text style={styles.title}>Jogo de Cartas</Text>
       <View style={{ flex: 2, justifyContent: "center", paddingTop: "25%" }}>
         <Button title="Iniciar Partida" onPress={inciarPartida} headerShown/>
-        <TextInput style={styles.input} placeholder="Insira seu nickname" onChange={(e)=>setNickName(e.target.value)}></TextInput>
+        <TextInput style={styles.input} placeholder="Insira seu nickname" onChangeText={setNickName}></TextInput>
       </View>
     </ImageBackground>
   );

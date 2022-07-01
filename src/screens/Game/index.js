@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { View, Text, Image } from "react-native";
 import { ScrollView } from "react-native";
 import { Button } from "react-native";
@@ -10,9 +10,9 @@ import { NickContext } from "../../NickContext";
 const Game = ({ route }) => {
   const { deckId } = route.params;
   const [cards, setCards] = useState(null);
-  const [naipe, setNaipe] = useState([])
+  // const [naipe, setNaipe] = useState([])
   
-  const [dados, setDados] = useContext(NickContext)
+  const {dados, setDados} = useContext(NickContext)
 
   console.log(dados);
 
@@ -31,6 +31,8 @@ const Game = ({ route }) => {
   //   ))}
   //   alert(naipe)
   //   console.log("aqui",naipe);
+
+
   //   if((cards[0].suit=="CLUBS" || cards[0].suit=="SPADES")&&(cards[1].suit=="CLUBS" || cards[1].suit=="SPADES")&&(cards[2].suit=="CLUBS" || cards[2].suit=="SPADES")){
   //     return alert("Você ganhou!")
   //   }
