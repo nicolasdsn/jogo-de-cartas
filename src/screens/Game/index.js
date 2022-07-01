@@ -6,7 +6,7 @@ import { styles } from "./styles";
 import { NickContext } from "../../NickContext";
 import bgImg from "../../images/fundoVerde.jpg";
 
-const Game = ({ route }) => {
+const Game = ({ route , navigation}) => {
   const { deckId } = route.params;
   const [cards, setCards] = useState(null);
   const [naipe, setNaipe] = useState(0);
@@ -25,6 +25,7 @@ const Game = ({ route }) => {
     }
     else if(restante<=2){
       alert("As cartas acabaram")
+      navigation.navigate("Home");
     } 
     else if (ganhou) {
       alert(`🏆Parabéns ${dados}, você venceu🏆`);
@@ -78,8 +79,8 @@ const Game = ({ route }) => {
   >
       <View style={{ flexDirection: "row" , flex:1, alignItems:"center", justifyContent:"center"}}>
         {cards &&
-          cards.cards.map((card) => (
-            <Image key={card.deck_id}
+          cards.cards.map((card, index) => (
+            <Image key={index}
               source={{ uri: card.image }}
               style={{ width: 130, height: 195, resizeMode: "contain" }}
             ></Image>

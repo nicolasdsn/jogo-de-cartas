@@ -8,26 +8,16 @@ import { useContext } from "react";
 import { NickContext } from "../../NickContext";
 
 const Home = ({ navigation }) => {
-  const [loading, setLoading] = useState(true);
-  const [idDeck, setIdDeck] = useState(null);
+ 
   const [nickName, setNickName] = useState("Player 1")
 
   const {dados, setDados} = useContext(NickContext)
 
-  useEffect(() => {
-    const get = async () => {
-      setLoading(true);
-      const id = await getDeckId();
-      setIdDeck(id);
-      setLoading(false);
-    };
-    get();
-    
-  }, []);
-
+  
   const inciarPartida = async () => {
+    const id = await getDeckId();
     navigation.navigate("Game", {
-      deckId: idDeck,
+      deckId: id,
     });
     setDados(nickName)
   };
