@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: "black",
   },
-  tentarNovamente: {
+  comprarCartas: {
     flex: 0.5,
     justifyContent: "center",
     alignItems: "center",

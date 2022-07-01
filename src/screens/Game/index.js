@@ -11,6 +11,7 @@ const Game = ({ route }) => {
   const [cards, setCards] = useState(null);
   const [naipe, setNaipe] = useState(0);
   const { dados, setDados } = useContext(NickContext);
+  const [restante, setRestante] = useState(52)
 
   const verificar = () => {
     const ganhou =
@@ -18,19 +19,26 @@ const Game = ({ route }) => {
       cards.cards.every(
         (card) => card.suit == "CLUBS" || card.suit == "SPADES"
       );
-    if (cards === null) {
+      
+    if (cards==null ) {
       return;
-    } else if (ganhou) {
+    }
+    else if(restante<=2){
+      alert("As cartas acabaram")
+    } 
+    else if (ganhou) {
       alert(`🏆Parabéns ${dados}, você venceu🏆`);
     } else {
       alert("☠️ VOCÊ PERDEU ☠️                                                                     Tente novamente");
     }
   };
 
-  const tentarNovamente = () => {
+  const comprarCartas = () => {
     const get = async () => {
       const deck = await getCards(deckId, 3);
       setCards(deck);
+      setRestante(restante-3);
+      
     };
     get();
 
@@ -71,7 +79,7 @@ const Game = ({ route }) => {
       <View style={{ flexDirection: "row" , flex:1, alignItems:"center", justifyContent:"center"}}>
         {cards &&
           cards.cards.map((card) => (
-            <Image
+            <Image key={card.deck_id}
               source={{ uri: card.image }}
               style={{ width: 130, height: 195, resizeMode: "contain" }}
             ></Image>
@@ -87,8 +95,8 @@ const Game = ({ route }) => {
 
       <View style={{flex:1,  justifyContent:"center", alignItems:"center"}}>
         <TouchableOpacity
-          style={styles.tentarNovamente}
-          onPress={tentarNovamente}
+          style={styles.comprarCartas}
+          onPress={comprarCartas}
         >
           <Text>Comprar cartas</Text>
         </TouchableOpacity>
